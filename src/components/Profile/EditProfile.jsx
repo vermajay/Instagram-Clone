@@ -72,24 +72,24 @@ const EditProfile = ({ isOpen, onClose }) => {
 
 								<FormControl>
 									<FormLabel fontSize={"sm"}>Full Name</FormLabel>
-									<Input placeholder={"Full Name"} size={"sm"} type={"text"} 
-                                        value={inputs.fullName || authUser.fullName}
+									<Input placeholder={authUser.fullName} size={"sm"} type={"text"} 
+                                        value={inputs.fullName}
                                         onChange={(e) => setInputs({...inputs, fullName: e.target.value })}
                                     />
 								</FormControl>
 
 								<FormControl>
 									<FormLabel fontSize={"sm"}>Username</FormLabel>
-									<Input placeholder={"Username"} size={"sm"} type={"text"} 
-                                        value={inputs.username || authUser.username}
+									<Input placeholder={authUser.username} size={"sm"} type={"text"} 
+										value={inputs.username}
                                         onChange={(e) => setInputs({...inputs, username: e.target.value })}
                                     />
 								</FormControl>
 
 								<FormControl>
 									<FormLabel fontSize={"sm"}>Bio</FormLabel>
-									<Input placeholder={"Bio"} size={"sm"} type={"text"} 
-                                        value={inputs.bio || authUser.bio}
+									<Input placeholder={authUser.bio} size={"sm"} type={"text"} 
+                                        value={inputs.bio}
                                         onChange={(e) => setInputs({...inputs, bio: e.target.value })}
                                     />
 								</FormControl>
