@@ -3,7 +3,7 @@ import useGetUserProfileById from "../../hooks/useGetUserProfileById"
 import {timeAgo} from '../../utils/timeAgo'
 import { Link } from "react-router-dom"
 
-const Comment = ({comment}) => {
+const Comment = ({comment, isProfilePage}) => {
 
   const {isLoading,userProfile} = useGetUserProfileById(comment.createdBy)
   if(isLoading) return <CommentSkeleton/>
@@ -16,7 +16,17 @@ const Comment = ({comment}) => {
         <Flex direction={"column"}>
             <Flex gap={2} alignItems={"baseline"}>
                 <Link to={`/${userProfile.username}`}>
-                  <Text fontWeight={"bold"} fontSize={12}>{userProfile.username}</Text>
+                  {
+                    isProfilePage ? 
+                    <Text fontWeight={"bold"} fontSize={12} display={{base:"none", md:"block"}}>
+                      {userProfile.username}
+                    </Text>
+                    :
+                    <Text fontWeight={"bold"} fontSize={12}>
+                      {userProfile.username}
+                    </Text>
+                  }
+                  
                 </Link>
                 <Text fontSize={14}>{comment.comment}</Text>
             </Flex>

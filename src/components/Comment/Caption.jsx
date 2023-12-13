@@ -13,7 +13,7 @@ const Caption = ({post}) => {
         <Flex direction={"column"}>
             <Flex gap={2} alignItems={"baseline"}>
                 <Link to={`/${userProfile.username}`}>
-                  <Text fontWeight={"bold"} fontSize={12}>{userProfile.username}</Text>
+                  <Text fontWeight={"bold"} fontSize={12} display={{base:"none", md:"block"}}>{userProfile.username}</Text>
                 </Link>
                 <Text fontSize={14}>{post.caption}</Text>
             </Flex>

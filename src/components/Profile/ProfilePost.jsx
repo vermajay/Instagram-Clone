@@ -87,16 +87,19 @@ const ProfilePost = ({post}) => {
             <ModalContent>
                 <ModalCloseButton />
                 <ModalBody bg={"black"} pb={5}>
-                    <Flex gap={4} w={{base:"90%", sm:"70%", md:"full"}} mx={"auto"} maxH={"90vh"} minH={"50vh"}>
-                        <Flex borderRadius={4} overflow={"hidden"} flex={1.5}
+                    <Flex gap={4} w={{base:"90%", sm:"70%", md:"full"}} mx={"auto"} maxH={"90vh"} minH={"50vh"} overflowY={"auto"}
+                        flexDir={{base:"column", md:"row"}}
+                        css={{'&::-webkit-scrollbar': {width: '0px'}}}
+                    >
+                        <Flex borderRadius={4} overflow={"hidden"} flex={1.5} maxH={"90vh"} minH={"50vh"}
                         border={"1px solid"} borderColor={"whiteAlpha.300"} justifyContent={"center"} alignItems={"center"}>
                             <Image objectFit={"contain"} src={post.imageURL} alt='profile post'/>
                         </Flex>
 
-                        <Flex flex={1} flexDir={"column"} px={10} pt={3} display={{base:"none", md:"flex"}}>
+                        <Flex flex={1} flexDir={"column"} px={{base:"0", md:"10"}} pt={3}>
                             <Flex alignItems={"center"} justifyContent={"space-between"}>
                                 <Link to={`/${userProfile.username}`}>
-                                    <Flex alignItems={"center"} gap={4}>
+                                    <Flex alignItems={"center"} gap={4} display={{base:"none", md:"block"}}>
                                         <Avatar src={userProfile.profilePicURL} size={"sm"} name='Jay Verma'/>
                                         <Text fontWeight={"bold"} fontSize={12}>{userProfile.username}</Text>
                                     </Flex>
@@ -120,7 +123,7 @@ const ProfilePost = ({post}) => {
                                 {post.caption && <Caption post={post}/>}
 
                                 {post.comments.map((comment, idx) => (
-                                    <Comment key={idx} comment={comment}/>
+                                    <Comment key={idx} comment={comment} isProfilePage={true}/>
                                 ))}
                             </VStack>
                             <Divider my={4} bg={"gray.800"}/>
