@@ -8,7 +8,7 @@ const HomePage = () => {
     <div>
       <Container maxW={"container.lg"}>
         <Flex gap={20}>
-          <Box flex={2} py={10}>
+          <Box flex={2} py={{base:"7", lg:"10"}}>
             <FeedPosts/>
           </Box>
           <Box flex={3} py={10} maxW={"300px"} mr={20} display={{base:"none", lg:"block"}}>

@@ -3,6 +3,8 @@ import useUserProfileStore from '../../store/userProfileStore'
 import useAuthStore from '../../store/authStore'
 import EditProfile from './EditProfile'
 import useFollowAndUnfollowUser from '../../hooks/useFollowAndUnfollowUser'
+import Followers from './Followers'
+import Following from './Following'
 
 const ProfileHeader = () => {
   const userProfile = useUserProfileStore((state)=>state.userProfile)
@@ -47,14 +49,8 @@ const ProfileHeader = () => {
                 <Text as={"span"} fontWeight={"bold"} mr={1}>{userProfile.posts.length}</Text>
                 Posts
             </Text>
-            <Text fontSize={{base:"sm", md:"lg"}}>
-                <Text as={"span"} fontWeight={"bold"} mr={1}>{userProfile.followers.length}</Text>
-                Followers
-            </Text>
-            <Text fontSize={{base:"sm", md:"lg"}}>
-                <Text as={"span"} fontWeight={"bold"} mr={1}>{userProfile.following.length}</Text>  
-                Following
-            </Text>
+            <Followers/>
+            <Following/>
         </Flex>
 
         <Flex alignItems={"center"} gap={4}>

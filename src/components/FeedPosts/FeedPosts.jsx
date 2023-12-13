@@ -1,7 +1,9 @@
-import { Box, Container, Flex, Skeleton, SkeletonCircle, Text, VStack, Link } from '@chakra-ui/react'
+import { Box, Container, Flex, Skeleton, SkeletonCircle, Text, VStack, Link, Button, useDisclosure, Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalBody } from '@chakra-ui/react'
 import FeedPost from './FeedPost'
 import useGetFeedPosts from '../../hooks/useGetFeedPosts'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import SuggestedUsers from '../SuggestedUsers/SuggestedUsers';
+import useGetSuggestedUsers from '../../hooks/useGetSuggestedUsers';
 
 const FeedPosts = () => {
     const [isHovered, setIsHovered] = useState(false);
@@ -12,11 +14,35 @@ const FeedPosts = () => {
         setIsHovered(false);
     };
 
+    const {isOpen,onClose,onOpen} = useDisclosure()
+    const {suggestedUsers} = useGetSuggestedUsers()
+
     const {isLoading,posts} = useGetFeedPosts()
 
-  return (
-    <Container maxW={"container.sm"} py={10} px={2}>
+    useEffect(()=>{
+        onClose()
+    },[suggestedUsers.length == 0])
 
+  return (
+    <Container maxW={"container.sm"} py={{base:"0", lg:"10"}} px={2}>
+
+        {suggestedUsers.length > 0 && <Button onClick={onOpen} display={{base:"block", lg:"none"}}
+        mb={5}
+        >
+            See suggested users
+        </Button>}
+        <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
+            <ModalOverlay/>
+            <ModalContent bg={"black"} border={"1px solid gray"} maxW={"400px"}>
+                <ModalCloseButton/>
+                <ModalBody pb={6}>
+                <Box display={{base:"block", lg:"none"}}>
+                    <SuggestedUsers isMobileView={true} />
+                </Box>
+                </ModalBody>
+            </ModalContent>
+        </Modal>
+        
         {isLoading && [0,1,2].map((_,index)=>(
             <VStack key={index} gap={4} alignItems={"flex-start"} mb={10}>
                 <Flex gap={2}>

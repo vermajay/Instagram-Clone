@@ -2,7 +2,7 @@ import { useState } from 'react'
 import useAuthStore from '../store/authStore'
 import useShowToast from './useShowToast'
 import { useEffect } from 'react'
-import { collection, getDocs, limit, orderBy, query, where } from 'firebase/firestore'
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { firestore } from '../Firebase/firebase'
 
 const useGetSuggestedUsers = () => {
@@ -19,8 +19,7 @@ const useGetSuggestedUsers = () => {
                 const q = query(
                     userRef,
                     where("uid", "not-in", [authUser.uid, ...authUser.following]),
-                    orderBy("uid"),
-                    limit(5)
+                    orderBy("uid")
                 )
 
                 const querySnapshot = await getDocs(q)
