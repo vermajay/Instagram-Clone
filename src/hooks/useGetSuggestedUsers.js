@@ -16,15 +16,12 @@ const useGetSuggestedUsers = () => {
             setIsLoading(true)
             try{
                 const userRef = collection(firestore, "users")
-                const q = query(
-                    userRef,
-                    where("uid", "not-in", [authUser.uid, ...authUser.following]),
-                    orderBy("uid")
-                )
+                const q = query(userRef)
 
                 const querySnapshot = await getDocs(q)
                 const users = [];
                 querySnapshot.forEach((doc) =>{
+                    if(!authUser.following.includes(doc.data().uid) && authUser.uid !== doc.data().uid)
                     users.push({...doc.data(), id:doc.id})
                 })
 

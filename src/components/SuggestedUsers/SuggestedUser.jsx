@@ -32,7 +32,7 @@ const SuggestedUser = ({user}) => {
                 </Box>
             </VStack>
         </Flex>
-        {authUser.uid !== user.uid && (
+        {authUser && authUser.uid !== user.uid && (
             <Button fontSize={13} bg={"transparent"} p={0} h={"max-content"} fontWeight={"medium"} color={"blue.400"} cursor={"pointer"} _hover={{color:"white"}} onClick={onFollowAndUnfollowUser} isLoading={isUpdating}>
                 {isFollowing ? "Unfollow" : "Follow"}
             </Button>

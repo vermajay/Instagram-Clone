@@ -21,7 +21,7 @@ const Followers = () => {
   return (
     <>
         <Button fontSize={{base:"sm", md:"lg"}} bg={"transparent"} p={1} onClick={onOpen}>
-            <Text as={"span"} fontWeight={"bold"} mr={1}>{userProfile.followers.length}</Text>
+            <Text as={"span"} fontWeight={"bold"} mr={1}>{followerArray.length}</Text>
             Followers
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">

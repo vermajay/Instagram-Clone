@@ -34,11 +34,12 @@ const useFollowAndUnfollowUser = (userId) => {
                     following: user.following.filter(uid => uid !== userId)
                 })
 
-                if(userProfile)
-                setUserProfile({
-                    ...userProfile,
-                    followers: userProfile.followers.filter(uid => uid !== user.uid)
-                })
+                if(userProfile){
+                    setUserProfile({
+                        ...userProfile,
+                        followers: userProfile.followers.filter(uid => uid !== user.uid)
+                    })
+                }
                 
                 localStorage.setItem("user-info", JSON.stringify({
                     ...user,

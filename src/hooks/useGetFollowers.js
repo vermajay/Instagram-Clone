@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import useShowToast from "./useShowToast"
-import { collection, getDocs, orderBy, query, where } from "firebase/firestore"
+import { collection, getDocs, query } from "firebase/firestore"
 import { firestore } from "../Firebase/firebase"
 import useUserProfileStore from '../store/userProfileStore'
 
@@ -15,15 +15,12 @@ const useGetFollowers = () => {
             setIsLoading(true)
             try{
                 const userRef = collection(firestore, "users")
-                const q = query(
-                    userRef,
-                    where("uid", "in", [...userProfile.followers]),
-                    orderBy("uid")
-                )
+                const q = query(userRef)
 
                 const querySnapshot = await getDocs(q)
                 const users = [];
                 querySnapshot.forEach((doc) =>{
+                    if(userProfile.followers.includes(doc.data().uid))
                     users.push({...doc.data(), id:doc.id})
                 })
 

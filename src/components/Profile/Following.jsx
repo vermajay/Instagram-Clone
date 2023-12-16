@@ -21,7 +21,7 @@ const Following = () => {
   return (
     <>
         <Button fontSize={{base:"sm", md:"lg"}} bg={"transparent"} p={1} onClick={onOpen}>
-            <Text as={"span"} fontWeight={"bold"} mr={1}>{userProfile.following.length}</Text>
+            <Text as={"span"} fontWeight={"bold"} mr={1}>{followingArray.length}</Text>
             Following
         </Button>
         <Modal isOpen={isOpen} onClose={onClose} motionPreset="slideInLeft">
